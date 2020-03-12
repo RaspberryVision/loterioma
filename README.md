@@ -4,6 +4,31 @@ The main repository of the LoterioMa casino infrastructure project. It serves fo
 ## Goal
 The goal of the project is to create a complete broken casino system responsible for operating online casinos. A very important aspect is the construction of the system from microservices that communicate with each other.
 
+## Configuration
+
+In the main project repository there is a `configuration` directory containing a configuration file in JSON format that will be parsed during the system boot.
+The catalog contains the following files:
+- **services.json** - containing information about all system components. During startup, all services with the `status == active` will be started.
+
+Default structure:
+```
+{
+    "version": "0.0.1-strech",
+    "checksum": "7f8990a65cccd959c0f75e84a166da7abc20f4433e1ca3bf748aa4a4b6ece317",
+    "components": [
+        {
+            "name": "",
+            "type": "",
+            "url": "",
+            "port": 9901
+        }
+    ],
+    "url": "",
+    "repository": "",
+    "mode": ""
+}
+```
+
 ## Concept diagram
 
 ### Dataflow description
