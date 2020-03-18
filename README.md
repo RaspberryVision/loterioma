@@ -6,9 +6,41 @@ The goal of the project is to create a complete broken casino system responsible
 
 ## Concept diagram
 
-### Dataflow description
+Simple view of whole system architecture:
+![Whole system architecture](resources/images/system_architecture.jpg)
 
-### Communication issues
+## Database data
+
+#### User 
+
+The user base object for using the system. The field consists of the following data:
+
+```
+**ID** - identifier*
+**Email** - email address*
+**Password** - field contains hashed password.
+```
+
+#### Game
+Represents definition of specific game.
+
+```
+**ID** - identifier
+**Name** - game name as string (title of game)
+**Slug** - sluggable name of game (usable to generate urls)
+**Type** - relation to GameType object.
+```
+
+#### GameType
+
+An object that represents the type of game. Basically we have two types of game - slots and cards.
+```
+**ID** - identifier*
+**Name** - type name
+**Description** - game type description.
+```
+
+## Communication issues
 
 The system oriented in the microservice architecture depends on continuous communication between subsystems. Due to the nature of the system, the performance (time) aspects of the solution used are important.
 The following methods are available:
@@ -27,6 +59,7 @@ Mercure
 6. **Game engine** - game engine. It is a service that combines data from RNG with the game object and returns the state of the given throw to the client. He is also responsible for saving all objects participating in the game and for updating user funds on the whole system. (Should funds be kept on the wallet service?).
 7. **Monitoring** - a system that allows you to view the status of the casino in real time.
 8. **Casino Web Page** - the casino home page gives you access to all services for users.
+9. **CasinoEngineer** - here we create devops.
 
 ## Data centralization
 
