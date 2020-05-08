@@ -16,7 +16,12 @@ good programming principles in the practical example.
 
 ##### Loterioma
 The head system repository is for documentation and project purposes only.
-*Technologies:* -
+
+##### Loterioma-core
+The main application kernel, it is used for integration between systems.
+*Technologies:* Symfony 5  
+https://github.com/RaspberryVision/loterioma-core
+https://github.com/RaspberryVision/loterioma-core/projects/1
 
 ##### Loterioma-client-basic
 A very basic customer enabling connections to the casino and playing games in graphical mode.  
@@ -38,12 +43,6 @@ Marketing system enabling sending messages to users, creating mailing lists for 
 ##### Loterioma-engineer
 An application that collects information about the application development process and quality control.
 *Technologies:* Symfony 5
-
-##### Loterioma-core
-The main application kernel, it is used for integration between systems.
-*Technologies:* Symfony 5  
-https://github.com/RaspberryVision/loterioma-core
-https://github.com/RaspberryVision/loterioma-core/projects/1
 
 ##### Loterioma-game-certifier
 The application is used for mass testing of the game in terms of certification of the random algorithm and the game 
@@ -99,11 +98,28 @@ The admin:
 - CRUD games,
 - show all games history
 
-2. Extended Base Version
-3. Version 1
-4. Version 1.1
+2. Version 0.1
+
+- add engineer services and QA tools,
+- adding debugger component
+
+3. Version 0.2
+
+- adding bank application, 
+- adding marketing
+
+4. Version 1.0
+
+- adding slots games,
+
 5. Version 1.2
+
+- adding roulette games,
+
 6. Version 1.3
+
+- adding lottery games,
+
 7. Version 1.4
 8. Version 1.5
 9. Version 1.5beta
