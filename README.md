@@ -1,106 +1,112 @@
-# loterio-ma
-The main repository of the LoterioMa casino infrastructure project. It serves for documentation and organization of projects included in the system.
+# Loterioma
+The main repository of the LoterioMa casino infrastructure project. It serves for documentation and organization of 
+projects included in the system.
 
 ## Goal
-The goal of the project is to create a complete broken casino system responsible for operating online casinos. A very important aspect is the construction of the system from microservices that communicate with each other.
+The aim of the project is to create a complete and functional online casino system, containing a number of applications 
+enabling casino management from the administrator and end customer side. The project is educational, aims to consolidate 
+good programming principles in the practical example.
 
-## Configuration
+## Table of concepts
 
-In the main project repository there is a `configuration` directory containing a configuration file in JSON format that will be parsed during the system boot.
-The catalog contains the following files:
-- **services.json** - containing information about all system components. During startup, all services with the `status == active` will be started.
+### System
+~
 
-Default structure:
-```
-{
-    "version": "0.0.1-strech",
-    "checksum": "7f8990a65cccd959c0f75e84a166da7abc20f4433e1ca3bf748aa4a4b6ece317",
-    "components": [
-        {
-            "name": "",
-            "type": "",
-            "url": "",
-            "port": 9901
-        }
-    ],
-    "url": "",
-    "repository": "",
-    "mode": ""
-}
-```
+### Components
 
-## Concept diagram
+##### Loterioma
+The head system repository is for documentation and project purposes only.
+*Technologies:* -
 
-Simple view of whole system architecture:
-![Whole system architecture](resources/images/system_architecture.jpg)
+##### Loterioma-client-basic
+A very basic customer enabling connections to the casino and playing games in graphical mode.  
+*Technologies:* HTML, JS
 
-## Database data
+##### Loterioma-game-debugger
+A simple application consisting of a form enabling the preparation of request parameters for a game engine, 
+it is used only for development purposes.  
+*Technologies:* HTML, JS
 
-#### User 
+##### Loterioma-queue
+An application that supports and monitors the casino's queue system.  
+*Technologies:* ?
 
-The user base object for using the system. The field consists of the following data:
+##### Loterioma-marketing
+Marketing system enabling sending messages to users, creating mailing lists for different types of notifications.  
+*Technologies:* ?
 
-```
-**ID** - identifier*
-**Email** - email address*
-**Password** - field contains hashed password.
-```
+##### Loterioma-engineer
+An application that collects information about the application development process and quality control.
+*Technologies:* Symfony 5
 
-#### Game
-Represents definition of specific game.
+##### Loterioma-core
+The main application kernel, it is used for integration between systems.
+*Technologies:* Symfony 5  
+https://github.com/RaspberryVision/loterioma-core
+https://github.com/RaspberryVision/loterioma-core/projects/1
 
-```
-**ID** - identifier
-**Name** - game name as string (title of game)
-**Slug** - sluggable name of game (usable to generate urls)
-**Type** - relation to GameType object.
-```
+##### Loterioma-game-certifier
+The application is used for mass testing of the game in terms of certification of the random algorithm and the game 
+parameters themselves.
+*Technologies:* NodeJS
 
-#### GameType
+##### Loterioma-bank
+Application enabling deposits and withdrawals of funds in the system.
+*Technologies:* ?
 
-An object that represents the type of game. Basically we have two types of game - slots and cards.
-```
-**ID** - identifier*
-**Name** - type name
-**Description** - game type description.
-```
+##### Loterioma-manager
+Casino management application, it is intended for administrators and presents all the information about the casino.  
+https://github.com/RaspberryVision/loterioma-manager
+https://github.com/RaspberryVision/loterioma-manager/projects/1
 
-## Communication issues
+##### Loterioma-builder
 
-The system oriented in the microservice architecture depends on continuous communication between subsystems. Due to the nature of the system, the performance (time) aspects of the solution used are important.
-The following methods are available:
-REST API
-WebSocket
-Mercure
+##### Loterioma-engine
 
-- RESEARCH HERE -
+##### Loterioma-datastore
 
-## Components
-1. **RNG** - random number generator, the system responsible for obtaining the numbers that make up the game.
-2. **Game client** - the game client is an application that allows you to send requests to the game server, it is also responsible for all operations related to it (logging in, resetting the game state). Ultimately, there can be an unlimited number of game clients.
-3. **DataStore** - system data warehouse, all data is saved here. Each system uses this storage to get synchronized data.
-4. **AdminPanel** - casino management panel, a place where we can add games, machines, administer the entire system from the administrative side.
-5. **Database** - physical database engine, casino registration is done via the DataStore website.
-6. **Game engine** - game engine. It is a service that combines data from RNG with the game object and returns the state of the given throw to the client. He is also responsible for saving all objects participating in the game and for updating user funds on the whole system. (Should funds be kept on the wallet service?).
-7. **Monitoring** - a system that allows you to view the status of the casino in real time.
-8. **Casino Web Page** - the casino home page gives you access to all services for users.
-9. **CasinoEngineer** - here we create devops.
+##### Loterioma-dice-engine
 
-## Data centralization
+##### Loterioma-lobby
+The main casino system for the customer is the base access client.
+https://github.com/RaspberryVision/loterioma-lobby
+https://github.com/RaspberryVision/loterioma-lobby/projects/1
 
-In order for all services to have access to data and to avoid redundancy, all data should be stored in an accessible service (such a data warehouse). Each of the websites will gain access to interesting data through the API.
 
-## Dictionary
+## Milestones
+What phases will the implementation be divided into?
 
-The dictionary is used to define frequently used domain words, any word that cannot be defined by using the definitions already available in the dictionary should go to the dictionary. Definitions should be specific, each sub-definition should be distinguished.
+1. Version Base
 
-**Casino system** - a complete network of systems enabling the use of the casino from both the administrative and client side. It consists of a series of communicating microservices.
-**Users** - all people have access to the system. Due to the type of access to the system, we distinguish:
-**User** - simple user, gamer.
-**Admin** - whole system administrator, can to manage whole system and configure casino.
-**Game** - a game understood as a specific type of game, e.g. slots or card games. Each game has: name, type, icon, description.
-**Game type** - the game type defines according to which basic rules the game is played. Available game types: slots and cards. 
-**Game type - slot** - type of game based on a machine consisting of rolls (rolls). The size and specific settings of the game are defined on its level.
-**Game type - card** - the base type of game based on the deck of cards.
-**Casino** - we understand the casino as instances of the entire system.
-**Data Store** - main casino data store, service enabling reading and adding casino data and their exchange between systems.
+Project: https://github.com/RaspberryVision/loterioma/projects/1
+
+The user:
+- can register,
+- logs into the system,
+- sees the list of available games,
+- sees he sees his profile data,
+- can update the data in his profile,
+- can choose the game and play (money issues are not checked at this stage)
+- game history is saved,
+- the system handles won rounds,
+- can to show his rounds history,
+
+The admin:
+- can to login in manager,
+- show all game types,
+- show all games,
+- show all users with CRUD operations,
+- CRUD games,
+- show all games history
+
+2. Extended Base Version
+3. Version 1
+4. Version 1.1
+5. Version 1.2
+6. Version 1.3
+7. Version 1.4
+8. Version 1.5
+9. Version 1.5beta
+10. Version 2.0alfa - first public version
+
+What functionalities must be included in each version?
